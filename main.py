@@ -301,7 +301,10 @@ def game(Players):
         elif Players[g.turn - 1].id == 'Computer':
             ComputerTurn(g, Players, g.turn - 1)  
 
-    print(f'{green}{g.winner}{reset} {blue}has{reset} {yellow}won{reset}{red}!{reset}')           
+    print(f'{green}{g.winner}{reset} {blue}has{reset} {yellow}won{reset}{red}!{reset}')
+    yesorno = input('\nWanna play again? y/n => ')
+    if yesorno == 'y' or yesorno == 'Y':
+        Init()          
 
 # take players from input and passing it into game()
 def Init():
@@ -309,7 +312,7 @@ def Init():
     NumberOfPlayers = 0
     while NumberOfPlayers < 1:
         try:
-            NumberOfPlayers = int(input('Enter number of players => '))
+            NumberOfPlayers = int(input('\nEnter number of players => '))
         except:
             pass
     NumberOfHumanPlayers = -1
