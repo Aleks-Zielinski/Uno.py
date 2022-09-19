@@ -1,23 +1,25 @@
 import random
-from colorama import Fore, Style, init
+from colorama import Fore, Style, init # pip install colorama
 import time
 import os
 
 #
-#   py3.10
+#   Python 3.10.7
 #   Main script
-#   Needs clean up and more comments
-#   will add soon
+#   Custom number of Players and type of players
+#   Made for fun, feel free to copy and modify
 #
 
 cards_stack = ['0.r', '0.g', '0.b', '0.y', '1.r', '1.g', '1.b', '1.y', '2.r', '2.g', '2.b', '2.y', '3.r', '3.g', '3.b', '3.y', '4.r', '4.g', '4.b', '4.y', '5.r', '5.g', '5.b', '5.y', '6.r', '6.g', '6.b', '6.y', '7.r', '7.g', '7.b', 
-'7.y', '8.r', '8.g', '8.b', '8.y', '9.r', '9.g', '9.b', '9.y', '+2.r', '+2.g', '+2.b', '+2.y', '+4'] #Change color, return move, block move missing
+'7.y', '8.r', '8.g', '8.b', '8.y', '9.r', '9.g', '9.b', '9.y', '+2.r', '+2.g', '+2.b', '+2.y', '+4']
 cards_stack_legacy = ['0', '1', '2', '3', '4', '5', '6', '7' ,'8', '9', '+2', '+4']
 
-init()
+init() # init colorama. it must be here
 # print(f"{Fore.GREEN}{cards_stack[2]}{Fore.YELLOW} {cards_stack[9]}{Fore.RED} {cards_stack[4]}{Style.RESET_ALL}")
 # for test
 
+
+# for simpler cmd coloring
 green = Fore.GREEN
 yellow = Fore.YELLOW
 red = Fore.RED
@@ -25,12 +27,14 @@ blue = Fore.BLUE
 grey = Fore.LIGHTBLACK_EX
 reset = Style.RESET_ALL
 
+# super class to merge same function that players have
 class Player():
     def __init__(self, number):
         self.cards = []
         self.cards_raw = []
         self.get_cards(number)
 
+    # X.get_cards(1) gives 1 card to a player
     def get_cards(self, number):
         temp_cards = []
         raw_temp_cards = []
@@ -50,10 +54,11 @@ class Player():
         self.cards = self.cards + temp_cards
         self.cards_raw = self.cards_raw + raw_temp_cards 
 
+    # it should be in HumanPlayer cuz only there it is used
     def show_cards(self):
         k = int(len(self.cards_raw))
         j = 0
-        for eachCard in self.cards_raw:
+        for eachCard in self.cards_raw: # it makes card 4.r into 4 with color
             if j < k:
                 if len(eachCard) == 3:
                     cut = slice(1)
@@ -87,10 +92,13 @@ class Player():
         CardsInColor = ' '.join(self.cards)
         return CardsInColor
 
+    # simple delete card from cards
     def delCard(self, move):
         del self.cards[move]
         del self.cards_raw[move]
 
+    # moved it from ComputerPlayer after making it multiplayer
+    # prints your move
     def printMove(self, card, Players, nid):
         lenght = len(self.cards)
         lenghtFixed = lenght - 1
@@ -98,6 +106,7 @@ class Player():
             cut = slice(1)
         elif len(card) == 4:
             cut = slice(2)
+        # it could be shorter if worked more on it    
         if card.endswith('r'):
             print(f'\n{green}{Players[nid].id} {nid}{reset} has choosen card {red}{card[cut]}{reset}. He has {red}{lenghtFixed}{reset} more cards!')
         elif card.endswith('g'):
@@ -109,17 +118,19 @@ class Player():
         else:
             print(f'\n{green}{Players[nid].id} {nid}{reset} has choosen card {grey}{card}{reset}. He has {red}{lenghtFixed}{reset} more cards!')              
 
+# human player subclass
 class HumanPlayer(Player):
     def __init__(self, number):
         super().__init__(number)
         self.id = 'Human'
 
+    # get move from player, choosing card
     def get_move(self):
         lenght = len(self.cards)
         deck = self.show_cards()
         print(f'\n{deck}')
         move = -1
-        while move > lenght - 1 or move < 0:
+        while move > lenght - 1 or move < 0: # to get card from your range
             if move == 911:
                 break
             elif lenght == 1:
@@ -136,15 +147,17 @@ class HumanPlayer(Player):
             self.get_cards(1)
             return move, None
         else:                  
-            cardCut = self.cards[move]
+            cardCut = self.cards[move] # can be deleted i guess
             cardRaw = self.cards_raw[move]
             return move, cardRaw
 
+# computer player subclass
 class ComputerPlayer(Player):
     def __init__(self, number):
         super().__init__(number)
         self.id = 'Computer'
 
+    # get move from computer
     def get_move(self):
         lenght = len(self.cards)
         move = random.randint(0, lenght - 1)
@@ -158,6 +171,7 @@ class ComputerPlayer(Player):
         cardCut = cardRaw[cut]
         return cardCut, cardRaw, move, lenght, cut      
 
+# game class
 class Game():
     def __init__(self, playerStart, numberofplayers):
         self.turn = playerStart
@@ -165,6 +179,7 @@ class Game():
         self.cardOnTable = random.choice(cards_stack)
         self.numberofplayers = numberofplayers
 
+    # making next turn and printing spaces
     def nextTurn(self):
         if len(self.cardOnTable) == 3:
             cut = slice(1)
@@ -183,11 +198,12 @@ class Game():
         print(f'\n{yellow}----------------------------------------------------------{reset}')        
         if self.turn == self.numberofplayers:
             self.turn = 1
-            time.sleep(0.7)
+            time.sleep(0.7) # to make game more natural; not insta moves
         else:
             self.turn += 1
-            time.sleep(0.7)      
+            time.sleep(0.7) # same here    
 
+    # change card on top; CurrentCard -> ChosenCard
     def changeCard(self, cardRaw, Players):
         NextPlayer = 0
         if self.turn < self.numberofplayers:
@@ -200,6 +216,7 @@ class Game():
             Players[NextPlayer].get_cards(2)
             print(f'\n{green}{Players[NextPlayer].id} {NextPlayer}{reset} got {red}2{reset} more cards!')
 
+    # checking if chosen card is valid to place by rules
     def isValid(self, cardRaw, id):
         topCard = self.cardOnTable
         if len(topCard) == 2 or len(cardRaw) == 2 or topCard.endswith('r') and cardRaw.endswith('r') or topCard.endswith('y') and cardRaw.endswith('y')or topCard.endswith('g') and cardRaw.endswith('g') or topCard.endswith('b') and cardRaw.endswith('b') or topCard.startswith('0') and cardRaw.startswith('0') or topCard.startswith('1') and cardRaw.startswith('1') or topCard.startswith('2') and cardRaw.startswith('2') or topCard.startswith('3') and cardRaw.startswith('3') or topCard.startswith('4') and cardRaw.startswith('4') or topCard.startswith('5') and cardRaw.startswith('5') or topCard.startswith('6') and cardRaw.startswith('6') or topCard.startswith('7') and cardRaw.startswith('7') or topCard.startswith('8') and cardRaw.startswith('8') or topCard.startswith('9') and cardRaw.startswith('9') or topCard.startswith('+') and cardRaw.startswith('+'):
@@ -210,6 +227,8 @@ class Game():
                 print(f'{red}Wrong Card!{reset}')
             return 'False'       
 
+# made it outside loop for cleaner code
+# could be inside game class
 def HumanTurn(g, Players, nid):
     input(f'\n{red}Give computer to {Players[nid].id} {nid}! Then press ENTER!{reset}')
     move, cardRaw = Players[nid].get_move()
@@ -237,6 +256,7 @@ def HumanTurn(g, Players, nid):
         g.changeCard(cardRaw, Players)
         g.nextTurn()
 
+# same as above
 def ComputerTurn(g, Players, nid):
     cardRaw = None
     lenght = len(Players[nid].cards)
@@ -260,6 +280,8 @@ def ComputerTurn(g, Players, nid):
         print(f'\n{red}{Players[nid].id} {nid} picked 1 card!{reset} He has {red}{lenghtFixed}{reset} cards!')
         g.nextTurn()    
 
+# could be inside Init()
+# while loop until winner is settled
 def game(Players):
     g = Game(1, len(Players))
 
@@ -281,6 +303,7 @@ def game(Players):
 
     print(f'{green}{g.winner}{reset} {blue}has{reset} {yellow}won{reset}{red}!{reset}')           
 
+# take players from input and passing it into game()
 def Init():
     Players = []
     NumberOfPlayers = 0
@@ -310,4 +333,5 @@ def Init():
         Players.append(player)            
     game(Players)
 
-Init()
+if __name__ == '__main__':
+    Init()

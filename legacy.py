@@ -1,20 +1,19 @@
 import random
 from colorama import Fore, Style, init
 import time
-import numpy as np
 
 #
 #   Legacy code with only Player vs Computer
 #   Made for backup before messing up with custom players
+#   Won't comment text here, for comments go to main.py
 #
 
 cards_stack = ['0.r', '0.g', '0.b', '0.y', '1.r', '1.g', '1.b', '1.y', '2.r', '2.g', '2.b', '2.y', '3.r', '3.g', '3.b', '3.y', '4.r', '4.g', '4.b', '4.y', '5.r', '5.g', '5.b', '5.y', '6.r', '6.g', '6.b', '6.y', '7.r', '7.g', '7.b', 
-'7.y', '8.r', '8.g', '8.b', '8.y', '9.r', '9.g', '9.b', '9.y', '+2.r', '+2.g', '+2.b', '+2.y', '+4'] #Change color, return move, block move missing
+'7.y', '8.r', '8.g', '8.b', '8.y', '9.r', '9.g', '9.b', '9.y', '+2.r', '+2.g', '+2.b', '+2.y', '+4']
 cards_stack_legacy = ['0', '1', '2', '3', '4', '5', '6', '7' ,'8', '9', '+2', '+4']
 
 init()
 # print(f"{Fore.GREEN}{cards_stack[2]}{Fore.YELLOW} {cards_stack[9]}{Fore.RED} {cards_stack[4]}{Style.RESET_ALL}")
-# for test
 
 green = Fore.GREEN
 yellow = Fore.YELLOW
