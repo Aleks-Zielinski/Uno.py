@@ -14,11 +14,6 @@ cards_stack = ['0.r', '0.g', '0.b', '0.y', '1.r', '1.g', '1.b', '1.y', '2.r', '2
 '7.y', '8.r', '8.g', '8.b', '8.y', '9.r', '9.g', '9.b', '9.y', '+2.r', '+2.g', '+2.b', '+2.y', '+4']
 cards_stack_legacy = ['0', '1', '2', '3', '4', '5', '6', '7' ,'8', '9', '+2', '+4']
 
-init() # init colorama. it must be here
-# print(f"{Fore.GREEN}{cards_stack[2]}{Fore.YELLOW} {cards_stack[9]}{Fore.RED} {cards_stack[4]}{Style.RESET_ALL}")
-# for test
-
-
 # for simpler cmd coloring
 green = Fore.GREEN
 yellow = Fore.YELLOW
@@ -337,4 +332,5 @@ def Init():
     game(Players)
 
 if __name__ == '__main__':
+    init() # init colorama. it must be here
     Init()
