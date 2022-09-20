@@ -1,7 +1,8 @@
-# Uno in CMD in Python
-Made for run and learning  
-Instructions are in code
-# How to play?
-Just run code and it will ask you for number of players etc.  
-And use Python (was made in 3.10.7)
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/custom-settings.png "Logo Title Text 1")
+# Uno.py
+Uno game made in Python  
+The game has 4 color cards with +2 and +4 type of cards  
+When you launch game it asks you about settings
+![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/custom-settings.png "Settings")  
+After setting it the game starts  
+First it asks you for your move but before it, it shows a sign telling you to give computer to the persons whose move it is  
+![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/showing-cards.png "Settings")  
