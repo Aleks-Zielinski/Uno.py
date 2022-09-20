@@ -1,8 +1,11 @@
 # Uno.py
 Uno game made in Python  
 The game has 4 color cards with +2 and +4 type of cards  
+Feel free to copy, modify and play!  
+[How to play?](https://github.com/Aleks-Zielinski/Uno.py#how-to-play "#How to play?")  
+[How does it work?](https://github.com/Aleks-Zielinski/Uno.py#how-does-it-work "#How does it work?")  
 # Gameplay
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/gameplay.gif "Win and play again")  
+![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/gameplay.gif "Gameplay")  
 # How does it work?
 When you launch game it asks you about settings  
 It doesn't ask you for number of computer players because it calculates it by NumberOfPlayers - NumberOfHumanPlayers  
@@ -18,3 +21,9 @@ Next move belongs to computer. The computer takes random card that can be placed
 After someone reaches point of having 0 cards it prints who won and asks you if you want to play again, if you do then it asks you again for settings  
 ![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/win-play-again.png "Win and play again")  
 # How to play?
+1st Way - Download Uno.py.exe and just run it!  
+2nd Way - Download main.py and run it with Python  
+```python
+python main.py
+```
+20.09.2022
