@@ -5,25 +5,24 @@ Feel free to copy, modify and play!
 [How to play?](https://github.com/Aleks-Zielinski/Uno.py#how-to-play "#How to play?")  
 [How does it work?](https://github.com/Aleks-Zielinski/Uno.py#how-does-it-work "#How does it work?")  
 # Gameplay
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/gameplay.gif "Gameplay")  
+![Gameplay](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/gameplay.gif "Gameplay")  
 # How does it work?
 When you launch game it asks you about settings  
 It doesn't ask you for number of computer players because it calculates it by NumberOfPlayers - NumberOfHumanPlayers  
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/custom-settings.png "Settings")  
+![Settings](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/custom-settings.png "Settings")  
 After setting it the game starts  
 First it asks you for your move but before it, it shows a sign telling you to give computer to the persons whose move it is  
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/showing-cards.png "Shows cards")  
+![Shows cards](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/showing-cards.png "Shows cards")  
 Then it prints your move  
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/human-move.png "Printed move")  
+![Printed move](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/human-move.png "Printed move")  
 Next move belongs to computer. The computer takes random card that can be placed, if there is none, it takes one card  
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/computer-move.png "Computer move")  
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/computer-extra-card.png "Takes extra card")  
+![Computer move](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/computer-move.png "Computer move")  
+![Takes extra card](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/computer-extra-card.png "Takes extra card")  
 After someone reaches point of having 0 cards it prints who won and asks you if you want to play again, if you do then it asks you again for settings  
-![alt text](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/win-play-again.png "Win and play again")  
+![Win and play again](https://github.com/Aleks-Zielinski/Uno.py/blob/main/assets%20for%20readme/win-play-again.png "Win and play again")  
 # How to play?
 1st Way - Download Uno.py.exe and just run it!  
 2nd Way - Download main.py and run it with Python  
 ```python
 python main.py
 ```
-20.09.2022
