@@ -224,11 +224,11 @@ class Game():
 
 # made it outside loop for cleaner code
 # could be inside game class
-def HumanTurn(g, Players, nid):
-    input(f'\n{red}Give computer to {Players[nid].id} {nid}! Then press ENTER!{reset}')
+def HumanTurn(g, Players, nid, NoHP):
+    if NoHP > 1: input(f'\n{red}Give computer to {Players[nid].id} {nid}! Then press ENTER!{reset}')
     move, cardRaw = Players[nid].get_move()
     if move == 911:
-        os.system('CLS')
+        if NoHP > 1: os.system('CLS')
         print(f'\n{green}{Players[nid].id} {nid} picked 1 card!{reset} He has {red}{len(Players[nid].cards)}{reset} cards!')
         g.nextTurn()
     else:
@@ -236,16 +236,16 @@ def HumanTurn(g, Players, nid):
         while valid == 'False':
             move, cardRaw = Players[nid].get_move()
             if move == 911:
-                os.system('CLS')
+                if NoHP > 1: os.system('CLS')
                 print(f'\n{green}{Players[nid].id} picked 1 card!{reset} He has {red}{len(Players[nid].cards)}{reset} cards!')
                 g.nextTurn()
                 return
             valid = g.isValid(cardRaw, 'Human')
         if move == 911:
-            os.system('CLS')
+            if NoHP > 1: os.system('CLS')
             print(f'\n{green}{Players[nid].id} {nid} picked 1 card!{reset} He has {red}{len(Players[nid].cards)}{reset} cards!')
             g.nextTurn()
-        os.system('CLS')          
+        if NoHP > 1: os.system('CLS')          
         Players[nid].printMove(cardRaw, Players, nid)
         Players[nid].delCard(move)  
         g.changeCard(cardRaw, Players)
@@ -277,7 +277,7 @@ def ComputerTurn(g, Players, nid):
 
 # could be inside Init()
 # while loop until winner is settled
-def game(Players):
+def game(Players, NoHP):
     g = Game(1, len(Players))
 
     g.nextTurn()
@@ -292,7 +292,7 @@ def game(Players):
             break    
 
         if Players[g.turn - 1].id == 'Human':
-            HumanTurn(g, Players, g.turn - 1)
+            HumanTurn(g, Players, g.turn - 1, NoHP)
         elif Players[g.turn - 1].id == 'Computer':
             ComputerTurn(g, Players, g.turn - 1)  
 
@@ -329,7 +329,7 @@ def Init():
     for i in range(NumberOfComputerPlayers):
         player = ComputerPlayer(NumberOfStartingCards)
         Players.append(player)            
-    game(Players)
+    game(Players, NumberOfHumanPlayers)
 
 if __name__ == '__main__':
     init() # init colorama. it must be here
